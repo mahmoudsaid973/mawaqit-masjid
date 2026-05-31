@@ -1,0 +1,7 @@
+{
+  "name": "mawaqit-masjid",
+  "bundleIdentifier": "com.forge.mawaqitmasjid.16f165b8",
+  "version": "0.1.0",
+  "deploymentTarget": "17.0",
+  "swiftLanguageVersion": "5.9"
+}

@@ -1,0 +1,41 @@
+{
+  "name": "desktop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder build --mac --x64 --ia32"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@playwright/experimental-ct-electron": "latest",
+    "@playwright/test": "^1.48.0",
+    "@tanstack/react-query": "^5.59.0",
+    "axios": "^1.7.0",
+    "date-fns": "^4.1.0",
+    "drizzle-kit": "^0.28.0",
+    "drizzle-orm": "^0.36.0",
+    "electron": "^20.2.0",
+    "express": "^4.21.0",
+    "lucide-react": "^0.460.0",
+    "next": "^15.5.0",
+    "next-auth": "latest",
+    "node-mocks-http": "latest",
+    "playwright": "latest",
+    "react": "^19.0.0",
+    "react-query": "latest",
+    "tailwindcss": "^4.0.0",
+    "uuid": "latest",
+    "vite": "latest",
+    "vite-plugin-electron": "latest",
+    "vite-plugin-electron-renderer": "latest",
+    "vitest": "^2.1.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "electron-builder": "^23.3.3"
+  }
+}

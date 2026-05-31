@@ -1,0 +1,17 @@
+# PR-30 — fastlane for MawaqitMasjid. Requires: bundle install.
+# Set SUPPLY_JSON_KEY to a Google Play API JSON key.
+
+default_platform(:android)
+
+platform :android do
+  desc "Deploy to internal testing track"
+  lane :internal do
+    gradle(task: "bundle", build_type: "Release")
+    upload_to_play_store(track: "internal", aab: "app/build/outputs/bundle/release/app-release.aab")
+  end
+
+  desc "Promote latest internal build to production"
+  lane :production do
+    upload_to_play_store(track: "production", track_promote_to: "production")
+  end
+end

@@ -1,0 +1,5 @@
+# PR-30 — fastlane Appfile.
+app_identifier("com.forge.mawaqitmasjid")
+apple_id(ENV["APP_STORE_CONNECT_APPLE_ID"] || "you@example.com")
+team_id(ENV["APP_STORE_CONNECT_TEAM_ID"])
+itc_team_id(ENV["APP_STORE_CONNECT_ITC_TEAM_ID"])

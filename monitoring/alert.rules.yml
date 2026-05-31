@@ -1,0 +1,26 @@
+# PR-76 — Alert rules for Mawaqit Masjid.
+# Baseline rules cover global error rate + p95 latency. Per-feature
+# budget rules are derived from PRD performance constraints (e.g.
+# "30s scan", "100 items/s cleanup") via extractBudgetsFromFeatures.
+groups:
+  - name: mawaqit-masjid-baseline
+    rules:
+      - alert: HighErrorRate
+        expr: sum(rate(http_server_duration_seconds_count{status_code=~"5.."}[5m])) / sum(rate(http_server_duration_seconds_count[5m])) > 0.05
+        for: 10m
+        labels:
+          severity: page
+          project: mawaqit-masjid
+        annotations:
+          summary: "5%+ HTTP 5xx for 10m"
+          description: "Investigate immediately — user-visible impact."
+
+      - alert: HighP95Latency
+        expr: histogram_quantile(0.95, sum by (le) (rate(http_server_duration_seconds_bucket[5m]))) > 1.5
+        for: 10m
+        labels:
+          severity: ticket
+          project: mawaqit-masjid
+        annotations:
+          summary: "p95 latency > 1.5s for 10m"
+          description: "Check downstream + DB query performance."

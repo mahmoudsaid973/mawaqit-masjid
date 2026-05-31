@@ -1,0 +1,62 @@
+<div class='bg-bg-gray-900 h-screen'>
+      <header class='bg-indigo-600 text-white p-4 flex justify-between'>
+        <h1 class='text-text-white font-bold text-lg'>Mawaqit Masjid</h1>
+        <nav class='flex items-center space-x-4'>
+          <a href='/prayer-times' class='text-text-white hover:text-text-gray-300'>Prayer Times</a>
+          <a href='/events-and-khutbah-topics' class='text-text-white hover:text-text-gray-300'>Events and Khutbah Topics</a>
+          <a href='/quran-reader' class='text-text-white hover:text-text-gray-300'>Quran Reader</a>
+        </nav>
+      </header>
+      <main class='p-4 flex flex-col space-y-4'>
+        <h2 class='text-text-white font-bold text-lg'>Upcoming Events</h2>
+        <table class='w-full table-auto border border-border-gray-700'>
+          <thead class='bg-bg-gray-800 text-text-white'>
+            <tr>
+              <th class='p-2'>Event Name</th>
+              <th class='p-2'>Date</th>
+              <th class='p-2'>Time</th>
+              <th class='p-2'>Location</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class='p-2'>Jumu'ah Prayer</td>
+              <td class='p-2'>2024-09-20</td>
+              <td class='p-2'>1:00 PM</td>
+              <td class='p-2'>Mawaqit Masjid</td>
+            </tr>
+            <tr>
+              <td class='p-2'>Tarawih Prayer</td>
+              <td class='p-2'>2024-09-25</td>
+              <td class='p-2'>10:00 PM</td>
+              <td class='p-2'>Mawaqit Masjid</td>
+            </tr>
+            <tr>
+              <td class='p-2'>Quran Recitation</td>
+              <td class='p-2'>2024-09-28</td>
+              <td class='p-2'>7:00 PM</td>
+              <td class='p-2'>Mawaqit Masjid</td>
+            </tr>
+          </tbody>
+        </table>
+        <button class='bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md'>Create Event</button>
+        <form class='flex flex-col space-y-4' id='create-event-form'>
+          <label class='text-text-white font-medium text-base' for='event-name'>Event Name:</label>
+          <input class='bg-gray-700 text-white p-2 rounded-md border border-gray-600' type='text' id='event-name' name='event-name' required>
+          <label class='text-text-white font-medium text-base' for='event-date'>Event Date:</label>
+          <input class='bg-gray-700 text-white p-2 rounded-md border border-gray-600' type='date' id='event-date' name='event-date' required>
+          <label class='text-text-white font-medium text-base' for='event-time'>Event Time:</label>
+          <input class='bg-gray-700 text-white p-2 rounded-md border border-gray-600' type='time' id='event-time' name='event-time' required>
+          <label class='text-text-white font-medium text-base' for='event-location'>Event Location:</label>
+          <input class='bg-gray-700 text-white p-2 rounded-md border border-gray-600' type='text' id='event-location' name='event-location' required>
+          <button class='bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md' type='submit'>Create Event</button>
+        </form>
+      </main>
+      <footer class='bg-indigo-600 text-white p-4 flex justify-between'>
+        <p>&copy; 2024 Mawaqit Masjid</p>
+        <nav class='flex items-center space-x-4'>
+          <a href='/events-and-khutbah-topics' class='text-text-white hover:text-text-gray-300'>Events and Khutbah Topics</a>
+          <a href='/quran-reader' class='text-text-white hover:text-text-gray-300'>Quran Reader</a>
+        </nav>
+      </footer>
+    </div>

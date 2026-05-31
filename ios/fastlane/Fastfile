@@ -1,0 +1,25 @@
+# PR-30 — fastlane configuration for MawaqitMasjid.
+# Requires: bundle install && bundle exec fastlane <lane>
+# Configure App Store Connect credentials via ~/.appstoreconnect/private_keys/.
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Push a new beta build to TestFlight"
+  lane :beta do
+    increment_build_number(xcodeproj: "MawaqitMasjid.xcodeproj")
+    build_app(scheme: "MawaqitMasjid", export_method: "app-store", export_options: "ExportOptions.plist")
+    upload_to_testflight(skip_waiting_for_build_processing: true)
+  end
+
+  desc "Submit a release build to the App Store"
+  lane :release do
+    build_app(scheme: "MawaqitMasjid", export_method: "app-store", export_options: "ExportOptions.plist")
+    upload_to_app_store(
+      skip_metadata: false,
+      skip_screenshots: false,
+      submit_for_review: false,
+      precheck_include_in_app_purchases: false,
+    )
+  end
+end

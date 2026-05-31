@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Run lint
+        run: npm run lint
+      - name: Run type check
+        run: npm run type-check
+      - name: Run unit tests
+        run: npm run test:unit
+      - name: Run integration tests
+        run: npm run test:integration
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: false
+          load: true
+          tags: mawaqit-masjid:ci-test
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Test Docker image
+        run: |
+          docker run --rm -d --name test-container mawaqit-masjid:ci-test
+          sleep 10
+          docker exec test-container wget --no-verbose --tries=1 --spider http://localhost:3000/api/healthz || exit 1
+          docker stop test-container
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run security scan
+        run: npx semgrep@1.71.0 scan --config=ci --error
+      - name: Dependency audit
+        run: npm audit --audit-level high
+      - name: Secrets scanning
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: .
+          extra_args: --only-verified

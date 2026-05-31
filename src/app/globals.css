@@ -1,0 +1,5 @@
+/* PR-20 scaffold: Tailwind base file. Imported by layout.tsx via the
+   Next.js metadata setup once a theme is wired. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

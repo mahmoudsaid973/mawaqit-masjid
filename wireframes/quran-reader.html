@@ -1,0 +1,59 @@
+<div class='bg-bg-gray-900 h-screen'>
+      <header class='bg-indigo-600 text-white p-4 flex justify-between'>
+        <a href='/prayer-times' class='text-text-white hover:text-text-gray-300'>Prayer Times</a>
+        <a href='/events-and-khutbah-topics' class='text-text-white hover:text-text-gray-300'>Events and Khutbah Topics</a>
+        <a href='/quran-reader' class='text-text-white hover:text-text-gray-300'>Quran Reader</a>
+        <a href='/hadith-browser' class='text-text-white hover:text-text-gray-300'>Hadith Browser</a>
+        <a href='/azkar' class='text-text-white hover:text-text-gray-300'>Azkar</a>
+        <a href='/admin-portal' class='text-text-white hover:text-text-gray-300'>Admin Portal</a>
+      </header>
+      <main class='p-4'>
+        <h1 class='text-text-white font-bold text-lg'>Quran Reader</h1>
+        <form class='flex flex-col'>
+          <label class='text-text-gray-300' for='surah'>Surah:</label>
+          <select id='surah' class='bg-gray-700 text-white p-2 rounded-md border border-gray-600'>
+            <option value='1'>Al-Fatihah</option>
+            <option value='2'>Al-Baqarah</option>
+            <option value='3'>Al-Imran</option>
+            <option value='4'>An-Nisa</option>
+            <option value='5'>Al-Maidah</option>
+          </select>
+          <label class='text-text-gray-300' for='ayah'>Ayah:</label>
+          <input type='number' id='ayah' class='bg-gray-700 text-white p-2 rounded-md border border-gray-600' min='1' max='286'>
+          <button class='bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md' type='submit'>Read Ayah</button>
+        </form>
+        <div class='mt-8'>
+          <h2 class='text-text-white font-bold text-lg'>Quran Text</h2>
+          <p class='text-text-gray-300' dir='rtl'>
+            بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+            الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ
+            الرَّحْمَٰنِ الرَّحِيمِ
+            مَالِكِ يَوْمِ الدِّينِ
+            إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ
+            اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ
+            صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ
+          </p>
+          <h2 class='text-text-white font-bold text-lg'>Translation</h2>
+          <p class='text-text-gray-300'>
+            In the name of Allah, the Most Gracious, the Most Merciful.
+            Praise be to Allah, the Lord of the universe.
+            The Most Gracious, the Most Merciful.
+            Master of the Day of Judgment.
+            You alone we worship, and You alone we ask for help.
+            Guide us on the straight path.
+            The path of those upon whom You have bestowed favor, not of those who have earned Your anger, nor of those who go astray.
+          </p>
+          <h2 class='text-text-white font-bold text-lg'>Tafsir</h2>
+          <p class='text-text-gray-300'>
+            This surah is a prayer, asking Allah to guide us on the right path, the path of those who have been favored by Allah, not the path of those who have earned His anger or gone astray.
+          </p>
+        </div>
+      </main>
+      <footer class='bg-indigo-600 text-white p-4 flex justify-between'>
+        <a href='/quran-reader' class='text-text-white hover:text-text-gray-300'>Quran Reader</a>
+        <a href='/hadith-browser' class='text-text-white hover:text-text-gray-300'>Hadith Browser</a>
+        <a href='/azkar' class='text-text-white hover:text-text-gray-300'>Azkar</a>
+        <a href='/home-screen-widgets' class='text-text-white hover:text-text-gray-300'>Home Screen Widgets</a>
+        <a href='/admin-portal' class='text-text-white hover:text-text-gray-300'>Admin Portal</a>
+      </footer>
+    </div>

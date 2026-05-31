@@ -1,0 +1,45 @@
+# PR-76 — Prometheus scrape config for Mawaqit Masjid.
+# Default 15s scrape interval; tighten per job if you need faster
+# resolution on hot paths.
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    project: mawaqit-masjid
+
+rule_files:
+  - alert.rules.yml
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - alertmanager:9093
+
+scrape_configs:
+  - job_name: app
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - app:3000
+        labels:
+          service: app
+          project: mawaqit-masjid
+
+  - job_name: backend
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - backend:4000
+        labels:
+          service: backend
+          project: mawaqit-masjid
+
+  - job_name: postgres
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - postgres-exporter:9187
+        labels:
+          service: postgres
+          project: mawaqit-masjid
