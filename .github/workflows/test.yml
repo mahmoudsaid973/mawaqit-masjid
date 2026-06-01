@@ -105,9 +105,21 @@ jobs:
       - uses: android-actions/setup-android@v3
       - name: Gradle cache
         uses: gradle/actions/setup-gradle@v3
+      - name: Bootstrap Gradle wrapper if missing
+        # PR-1278 part-51 — LLM-generated android/ trees frequently omit
+        # gradlew + gradle-wrapper.jar + gradle-wrapper.properties. Without
+        # them `./gradlew` is "No such file or directory". setup-gradle
+        # puts a system gradle on PATH; we use it to seed the wrapper.
+        run: |
+          cd android
+          if [ ! -f gradlew ]; then
+            echo "::warning::No Gradle wrapper found — bootstrapping with system gradle."
+            gradle wrapper --gradle-version 8.7
+          fi
       - name: Unit tests
         run: |
           cd android
+          chmod +x gradlew
           ./gradlew testDebugUnitTest --stacktrace
       - name: Upload test results
         if: always()
