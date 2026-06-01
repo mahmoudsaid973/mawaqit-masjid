@@ -5,4 +5,5 @@ plugins {
     alias(libs.plugins.kotlinSerialization) apply false
     alias(libs.plugins.kotlinKsp) apply false
     alias(libs.plugins.hilt) apply false
+    alias(libs.plugins.composeCompiler) apply false
 }
