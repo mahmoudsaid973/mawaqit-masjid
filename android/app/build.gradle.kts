@@ -1,4 +1,8 @@
 // PR-30 — app/build.gradle.kts
+// PR-1278 part-52 — explicit import required; Gradle Kotlin DSL doesn't
+// auto-resolve `java.util.Properties` even though it's stdlib.
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
@@ -9,8 +13,8 @@ plugins {
 
 // Optional signing via keystore.properties.
 val keystorePropsFile = rootProject.file("keystore.properties")
-val keystoreProps = java.util.Properties().apply {
-    if (keystorePropsFile.exists()) keystorePropsFile.inputStream().use { load(it) }
+val keystoreProps = Properties().apply {
+    if (keystorePropsFile.exists()) keystorePropsFile.inputStream().use { stream -> load(stream) }
 }
 
 android {
@@ -30,11 +34,11 @@ android {
 
     signingConfigs {
         create("release") {
-            if (keystoreProps.isNotEmpty()) {
-                storeFile = rootProject.file(keystoreProps["storeFile"] as String)
-                storePassword = keystoreProps["storePassword"] as String
-                keyAlias = keystoreProps["keyAlias"] as String
-                keyPassword = keystoreProps["keyPassword"] as String
+            if (!keystoreProps.isEmpty) {
+                storeFile = rootProject.file(keystoreProps.getProperty("storeFile"))
+                storePassword = keystoreProps.getProperty("storePassword")
+                keyAlias = keystoreProps.getProperty("keyAlias")
+                keyPassword = keystoreProps.getProperty("keyPassword")
             }
         }
     }
@@ -44,7 +48,7 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            signingConfig = if (keystoreProps.isNotEmpty()) signingConfigs.getByName("release") else signingConfigs.getByName("debug")
+            signingConfig = if (!keystoreProps.isEmpty) signingConfigs.getByName("release") else signingConfigs.getByName("debug")
         }
         getByName("debug") {
             applicationIdSuffix = ".debug"
