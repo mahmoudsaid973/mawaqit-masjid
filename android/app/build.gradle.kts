@@ -9,6 +9,8 @@ plugins {
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.kotlinKsp)
     alias(libs.plugins.hilt)
+    // PR-1278 part-52 — Kotlin 2.0+ requires this plugin when buildFeatures.compose=true.
+    alias(libs.plugins.composeCompiler)
 }
 
 // Optional signing via keystore.properties.
